@@ -1,0 +1,50 @@
+.player {
+  background: white;
+  border: 1px solid #e8e8e8;
+  margin-bottom: 13px;
+  padding: 13px;
+}
+
+.player__noplayer {
+  text-align: center;
+  font-size: 18px;
+}
+
+.player__profile {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.player__score {
+  font-weight: 300;
+}
+
+.player__actions {
+  flex-shrink: 0;
+
+}
+
+.button {
+  background: white;
+  border: 1px solid #555;
+  cursor: pointer;
+  margin-left: 13px;
+  outline: none;
+  padding: 13px;
+  transition: background 200ms ease, transform 200ms ease;
+
+  &:hover, &:focus {
+    background: #e8e8e8;
+  }
+  &:active {
+    background: #ccc;
+    transform: scale(1.1)
+  }
+}
+
+.button--round {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
