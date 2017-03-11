@@ -1,32 +1,36 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes, Component } from 'react'
 import { Players } from '../api/players'
 
-export const Player = ({ _id, name, score }) => {
-  function incScore (id) {
-    Players.update(_id, {$inc: {score: 1}})
+export class Player extends Component {
+
+  incScore (id) {
+    Players.update(id, {$inc: {score: 1}})
   }
-  function decScore (id) {
-    Players.update(_id, {$inc: {score: -1}})
+  decScore (id) {
+    Players.update(id, {$inc: {score: -1}})
   }
-  function delPlayer (id) {
-    Players.remove(_id)
+  delPlayer (id) {
+    Players.remove(id)
   }
 
-  return (
-    <div className='player'>
-      <div className='player__profile'>
-        <div className='player__stats'>
-          <h3 className='player__name'>{name}</h3>
-          <p className='player__score'>{score} {(score === 1 || score === -1) ? 'point' : 'points'}.</p>
-        </div>
-        <div className='player__actions'>
-          <button className='button button--round' onClick={() => incScore(_id)}>+1</button>
-          <button className='button button--round' onClick={() => decScore(_id)}>-1</button>
-          <button className='button button--round' onClick={() => delPlayer(_id)}>X</button>
+  render () {
+    const { _id, name, score } = this.props
+    return (
+      <div className='player'>
+        <div className='player__profile'>
+          <div className='player__stats'>
+            <h3 className='player__name'>{name}</h3>
+            <p className='player__score'>{score} {(score === 1 || score === -1) ? 'point' : 'points'}.</p>
+          </div>
+          <div className='player__actions'>
+            <button className='button button--round' onClick={() => this.incScore(_id)}>+1</button>
+            <button className='button button--round' onClick={() => this.decScore(_id)}>-1</button>
+            <button className='button button--round' onClick={() => this.delPlayer(_id)}>X</button>
+          </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 Player.propTypes = {
